@@ -1,8 +1,7 @@
-import Enemy from './enemy.js'
-import Player from './player.js'
-import {PLAYER_HEIGHT, PLAYER_WIDTH} from './player.js'
+import {Enemy} from './enemy.js'
+import {Player, PLAYER_HEIGHT, PLAYER_WIDTH} from './player.js'
 
-export default class Game {
+export class Game {
     constructor(width, height) {
         this.w = width
         this.h = height
@@ -12,12 +11,21 @@ export default class Game {
             new Enemy(0, 32),
         ]
     }
-    handleInput(input) {
+    handleInput(input, delta) {
+        this.player.handleInput(input, delta)
+    }
+    update(delta) {
+        for (const enemy of this.enemies) {
+            enemy.update(delta, this.player)
+        }
+        this.player.update(delta)
     }
     render(ctx, delta) {
-        this.player.render(ctx, delta)
         for (const enemy of this.enemies) {
             enemy.render(ctx, delta)
         }
+        this.player.render(ctx, delta)
     }
 }
+
+export default {Game}

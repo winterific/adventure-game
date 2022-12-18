@@ -1,4 +1,4 @@
-import Game from './game.js'
+import {Game} from './game.js'
 
 const SCALE = 2
 const GAME_WIDTH = 256
@@ -32,26 +32,32 @@ const onKey = mode => {
         switch (e.key) {
             // up
             case 'ArrowUp':
+            case 'w':
                 input['up'] = mode === 'down' ? true : false;
                 break;
             // down
             case 'ArrowDown':
+            case 's':
                 input['down'] = mode === 'down' ? true : false;
                 break;
             // left
             case 'ArrowLeft':
+            case 'a':
                 input['left'] = mode === 'down' ? true : false;
                 break;
             // right
             case 'ArrowRight':
+            case 'd':
                 input['right'] = mode === 'down' ? true : false;
                 break;
             // a
             case 'x':
+            case '.':
                 input['a'] = mode === 'down' ? true : false;
                 break;
             // b
             case 'z':
+            case ',':
                 input['b'] = mode === 'down' ? true : false;
                 break;
             //start
@@ -71,10 +77,14 @@ document.addEventListener('keyup', onKey('up'))
 const game = new Game(GAME_WIDTH, GAME_HEIGHT)
 
 function gameLoop(timestamp) {
-    const delta = timestamp - oldTimestamp
+    const delta = (timestamp - oldTimestamp) / 1000
     oldTimestamp = timestamp
 
-    game.handleInput(input)
+    // clear the canvas for redrawing
+    ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
+
+    game.handleInput(input, delta)
+    game.update(delta)
     game.render(ctx, delta)
 
     requestAnimationFrame(gameLoop)
