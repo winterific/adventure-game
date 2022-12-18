@@ -1,0 +1,9 @@
+html {
+    background-color: black;
+    color: #ddd;
+}
+
+canvas {
+    background-color: tan;
+    image-rendering: pixelated;
+}
