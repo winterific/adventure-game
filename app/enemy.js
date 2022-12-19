@@ -11,7 +11,7 @@ export class Enemy {
         this.speed = ENEMY_SPEED
     }
     update(delta, player) {
-        // TODO: update the enemie's position based on what the player is doing
+        // update the enemie's position based on what the player is doing
         if (player.x > this.x) {
             this.vx = this.speed * delta 
         }
@@ -36,7 +36,9 @@ export class Enemy {
     }
     render(ctx, delta) {
         ctx.fillStyle = 'red'
-        ctx.fillRect(this.x, this.y, this.w, this.h)
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.w / 2, 0, Math.PI * 2, true)
+        ctx.fill()
     }
 }
 

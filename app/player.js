@@ -39,7 +39,9 @@ export class Player {
     }
     render(ctx, delta) {
         ctx.fillStyle = 'forestgreen'
-        ctx.fillRect(this.x, this.y, this.w, this.h)
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.w / 2, 0, Math.PI * 2, true)
+        ctx.fill()
     }
 }
 
