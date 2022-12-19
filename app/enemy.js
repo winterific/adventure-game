@@ -1,15 +1,5 @@
 export const ENEMY_SPEED = 20
 
-function mostlyPositive() {
-    if (Math.floor(Math.random() * 10) % 4 === 0) {
-        return -1
-    }
-    return 1
-}
-function mostlyNegative() {
-    return !mostlyPositive()
-}
-
 export class Enemy {
     constructor(x, y) {
         this.w = 16
