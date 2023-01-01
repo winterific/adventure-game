@@ -9,6 +9,7 @@ export class Enemy {
         this.vx = 0
         this.vy = 0
         this.speed = ENEMY_SPEED
+        this.level = 0
     }
     update(delta, player) {
         // update the enemie's position based on what the player is doing

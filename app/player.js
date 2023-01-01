@@ -12,6 +12,7 @@ export class Player {
         this.vy = 0
         this.speed = PLAYER_SPEED
         this.items = []
+        this.level = 1
     }
     handleInput(input, delta) {
         if (input.left && !input.right) {
